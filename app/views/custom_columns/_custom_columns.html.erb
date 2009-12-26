@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th colspan="2">Actions</th>
+  </tr>
+  <% customizable.custom_columns.each do |column| %>
+  <tr>
+    <td><%= column.name %></td>
+    <td><%= link_to "Edit", edit_polymorphic_path([customizable, column]) %></td>
+    <td><%= link_to "Delete", polymorphic_path([customizable, column]), :method => :delete %></td>
+  </tr>
+  <% end %>
+</table>

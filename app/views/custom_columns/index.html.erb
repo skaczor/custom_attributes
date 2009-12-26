@@ -1,0 +1,16 @@
+<h1>Custom Columns for <%= @customizing.name %></h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+  </tr>
+  <% @custom_columns.each do |custom_column| %>
+  <tr>
+    <td><%= link_to custom_column.name, [@customizing, custom_column] %></td>
+    <td><%= custom_column.position %></td>
+  </tr>
+  <% end %>
+</table>
+<p>
+  <%= link_to 'New Custom Column', new_polymorphic_path([@customizing, CustomColumn]) %>
+</p>

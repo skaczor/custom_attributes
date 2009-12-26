@@ -1,0 +1,2 @@
+class SomeModel
+end
