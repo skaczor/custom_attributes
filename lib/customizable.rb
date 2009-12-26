@@ -59,6 +59,7 @@ module Customizable
 
     # Deletes attributes no longer associated with this model
     def cleanse_custom_attributes
+      return if custom_columns.empty?
       custom_column_ids = custom_columns.map { |c| c.id }
       CustomAttribute.delete_all([ "customized_id = ? AND customized_type = ? AND column_id NOT IN (#{custom_column_ids.join(',')})",
         self.id, self.class.name ])
