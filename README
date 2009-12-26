@@ -1,0 +1,12 @@
+Permits managing custom attributes for Active Record models. Unlike other plugins,
+custom_attributes uses an associated model to define which columns should be
+available for the current model.
+
+For example, suppose that you have a catalog of items for sale (Item model),
+such as Monitors, Hard Disks, etc. Each item needs attributes that are specific
+only for its category (Category Model). Therefore, let's define that Monitors
+should have the display_size and dpi attributes, while Hard Disks should define
+capacity and rpm.
+
+The plugin will automatically create the required attributes for each Item model,
+based on its association with the Category model.
