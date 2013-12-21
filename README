@@ -22,7 +22,3 @@ end
 
 The plugin will automatically create the required attributes for each Item model,
 based on its association with the Category model.
-
-This plugin uses the desert component framework. Please follow the directions at
-the URL below to install desert:
-http://github.com/pivotal/desert
