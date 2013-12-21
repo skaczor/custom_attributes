@@ -1,0 +1,11 @@
+<% if custom_attributes.empty? %>
+  <div class="viewer">
+    <span class="attribute_placeholder">N/A</span>
+  </div>
+<% else %>
+  <div class="viewer">
+    <% custom_attributes.reject{ |a| a.value.blank? }.each do |attribute| %>
+      <span class="attribute" title="<%= attribute.column.caption if attribute.column %>"><%= attribute.value %></span>
+    <% end %>
+  </div>
+<% end %>

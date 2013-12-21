@@ -1,0 +1,15 @@
+%fieldset
+  %legend Custom Column
+  = fields.label :name
+  = fields.text_field :name
+  = fields.label :caption
+  = fields.text_field :caption
+  = fields.label :position
+  = fields.text_field :position
+
+  = remove_model_link("Remove", fields)
+  %h3 Valid Values
+  
+  .container
+    = nested_models fields, :values, :partial => 'custom_columns/value_fields'
+    = new_model_link "Add Valid Value", fields, :values, :partial  => 'custom_columns/value_fields', :template => '#custom_attribute_value.template'

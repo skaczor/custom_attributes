@@ -1,0 +1,6 @@
+<tr>
+  <td></td>
+  <td><%= f.text_field :caption %></td>
+  <td><%= f.text_field :value %></td>
+  <td><%= f.hidden_field '_destroy' %><%= link_to_function "remove", "this.up(1).hide();this.previous().value=1" %></td>
+</tr>

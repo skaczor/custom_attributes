@@ -1,2 +1,0 @@
-class SomeModel
-end

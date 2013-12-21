@@ -1,4 +1,12 @@
-<h1>New Custom Column</h1>
+<% content_for(:head) do %>
+  <%= javascript_include_tag('prototype') %>
+  <title>New Custom Column</title>
+<% end %>
+<% if @custom_column.parent %>
+  <h1>Derived Custom Column from <%= @custom_column.parent.customizing %></h1>
+<% else %>
+  <h1>New Custom Column</h1>
+<% end %>
 
 <%= render :partial => 'custom_column',
   :object => @custom_column,

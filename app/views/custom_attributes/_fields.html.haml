@@ -1,0 +1,10 @@
+- if fields.object.column
+  = fields.hidden_field :column_id
+  = fields.label :value, fields.object.column.caption 
+  - if fields.object.column.values.empty?
+    = fields.text_field :value
+  - else
+    = fields.collection_select :value, fields.object.column.values, 
+      :caption, :caption, :prompt => "Select a Value", :include_blank => true
+- else
+  = fields.select :column_id, [], {:prompt => "Select a Column"}, :class => 'custom_column'

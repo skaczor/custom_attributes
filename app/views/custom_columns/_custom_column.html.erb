@@ -1,9 +1,46 @@
 <% form_for([customizing, custom_column]) do |f| %>
   <%= f.error_messages %>
 
+  <% unless custom_column.new_record? %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+  </p>
+  <% end %>
+
+  <p>
+    <%= f.label :caption %><br />
+    <%= f.text_field :caption %>
+  </p>
+
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+
+  <h2>Valid Values</h2>
+  <table id="valid_values">
+    <tr>
+      <th>Defined By</th>
+      <th>Caption</th>
+      <th>Numerical Value</th>
+    </tr>
+    <% if custom_column.parent %>
+      <% custom_column.parent.values.each do |value| %>
+        <tr>
+          <td><%= link_to custom_column.parent.customizing, custom_column.parent.customizing %></td>
+          <td><%=h value.caption %></td>
+          <td><%=h value.value %></td>
+          <td />
+        </tr>
+      <% end %>
+    <% end %>
+    <% f.fields_for :values do |value_fields| %>
+      <%= render :partial => 'custom_attribute_value', :locals => {:f => value_fields} %>
+    <% end %>
+  </table>
+  <p>
+    <%= link_to_remote 'Add New Value',  :url => {:action => :new_attribute_value}, :with => "'container_id=valid_values'" %>
   </p>
 
   <p>

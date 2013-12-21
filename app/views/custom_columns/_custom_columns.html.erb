@@ -1,13 +1,38 @@
 <table>
   <tr>
-    <th>Name</th>
-    <th colspan="2">Actions</th>
+    <th>Defined By</th>
+    <th>Caption</th>
+    <th>Values</th>
+    <th>Used</th>
+    <th colspan="4">Actions</th>
   </tr>
-  <% customizable.custom_columns.each do |column| %>
+  <% (defined?(columns) ? columns : customizable.custom_columns).each do |column| %>
+  <% customizing = column.parent ? column.parent.customizing : column.customizing %>
   <tr>
-    <td><%= column.name %></td>
+    <td>
+      <%=  link_to customizing, customizing %>
+    </td>
+    <td><%= column.caption %></td>
+    <td>
+      <%= ((column.parent ? column.parent.values : []) + column.values).map(&:caption).join(', ') %>
+    </td>
+    <td>
+      <%= column.customizing == customizable ? 'Yes' : 'No' %>
+    </td>
     <td><%= link_to "Edit", edit_polymorphic_path([customizable, column]) %></td>
-    <td><%= link_to "Delete", polymorphic_path([customizable, column]), :method => :delete %></td>
+    <td>
+      <% if column.customizing != customizable %>
+        <%= link_to "Use", new_polymorphic_path([customizable, CustomColumn], :use => 1, :parent_id => column.id) %>
+      <% elsif column.parent %>
+        <%= link_to "Edit Parent", edit_polymorphic_path([customizable, column.parent]) %>
+      <% end %>
+    </td>
+    <td>
+      <% if column.customizing == customizable %>
+        <%= link_to "Delete", polymorphic_path([customizable, column]), :method => :delete,
+          :confirm => 'Are you sure you want to delete this custom column? Existing attribute values will be lost and any derived custom columns will be deleted as well.' %>
+        <% end %>
+    </td>
   </tr>
   <% end %>
 </table>

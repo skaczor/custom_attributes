@@ -1,0 +1,18 @@
+<div class="custom_attribute<%= ' editable_attribute' if defined? fields %>">
+  <% if defined? fields %>
+    <%= fields.hidden_field(:column_id) %>
+    <span class="caption"><%= fields.label(:value, custom_attribute.column.caption) %></span>
+    <span class="edit">
+    <% if custom_attribute.column.all_values.empty? %>
+        <%= fields.text_field(:value) %>
+    <% else %>
+        <%= fields.collection_select(:value, custom_attribute.column.all_values, :caption, :caption,
+          :prompt => "Select a Value",
+          :include_blank => true )%>
+    <% end %>
+    </span>
+  <% else %>
+    <span class="caption"><%=h custom_attribute.column.caption %></span>
+    <span class="value"><%=h custom_attribute.value %></span>
+  <% end %>
+</div>

@@ -6,7 +6,7 @@
   </tr>
   <% @custom_columns.each do |custom_column| %>
   <tr>
-    <td><%= link_to custom_column.name, [@customizing, custom_column] %></td>
+    <td><%= link_to custom_column.name, polymorphic_url([@customizing, custom_column], :action => :edit) %></td>
     <td><%= custom_column.position %></td>
   </tr>
   <% end %>

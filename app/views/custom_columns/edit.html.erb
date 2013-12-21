@@ -1,4 +1,8 @@
-<h1>Edit Custom Column</h1>
+<% content_for(:head) do %>
+  <%= javascript_include_tag('prototype', 'delegate') %>
+  <title>Edit Custom Column for <%= @custom_column.customizing %></title>
+<% end %>
+<h1>Edit Custom Column for <%= @custom_column.customizing %></h1>
 
 <%= render :partial => 'custom_column',
   :object => @custom_column,
